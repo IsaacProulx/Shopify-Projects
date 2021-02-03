@@ -1,0 +1,60 @@
+{% for obj in {order.line_items | json} %}
+	{% if obj.title == "Thanksgiving Deluxe Cheer Box" %}
+		<p>
+      <hr>
+        <div class="order-container-header">
+          <div class="order-container-header-left-content">
+            <p class="subtitle-bold to-uppercase">
+              Cheer Box Items
+            </p>
+          </div>
+          <div class="order-container-header-right-content">
+            <p class="subtitle-bold to-uppercase">
+              Quantity
+            </p>
+          </div>
+        </div>  
+    </p>
+
+<!--CHEERBOX ITEM LIST, FORMAT: <name>:<quantity>-->
+<!--ITEMS SHOULD BE COMMA SEPARATED-->
+{% assign cheerbox_items = "
+
+Face Mask:1,
+Mask Infuser Spray:1,
+Apple Crumble Bar Soap:1,
+Fall Greeting Card:1,
+Candle Dish: 1,
+Owl Votive Candle:1,
+Fall Tea/Mulling Spice:1,
+Maple Syrup:1,
+Cinnamon Buns:1,
+Mini Carrot Cake:1,
+Fall Themed Cookies:1,
+Mustard Pickles:1,
+Square Beeswax Food Wrap:1,
+Box Insert: 1
+
+" | split: "," %}
+<!--END OF CHEERBOX ITEM LIST-->
+
+    {% for i in (0..cheerbox_items.size) %}
+			{% assign item = cheerbox_items[i] | split: ":" %}
+      <div class="flex-line-item">
+        <div class="flex-line-item-description">
+					<p>
+            <span class="line-item-description-line">
+            	{{ item[0] }}
+            </span>
+					</p>
+				</div>
+
+        <div class="flex-line-item-quantity">
+        	<p class="text-align-right">
+          	{{ item[1] }}
+          </p>
+				</div>
+      </div>
+		{% endfor %}
+	{% endif %}
+{% endfor %}
